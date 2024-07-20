@@ -246,6 +246,22 @@ const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowCart(false);
   };
+
+let plantList = [];
+plantsArray.map((element) => 
+        {
+            plantList.push(<li>{element.category}</li>);
+            element.plants.map((plant) => 
+                {
+                    plantList.push(<li>{plant.name}</li>);
+                    plantList.push(<li><img src={plant.image} width="100" height="100"></img></li>);
+                    plantList.push(<li>{plant.description}</li>);
+                    plantList.push(<li>{plant.cost}</li>);
+                }
+            ) 
+        }
+)
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -268,8 +284,7 @@ const handlePlantsClick = (e) => {
         </div>
         {!showCart? (
         <div className="product-grid">
-
-
+            <ul>{plantList}</ul>
         </div>
  ) :  (
     <CartItem onContinueShopping={handleContinueShopping}/>
